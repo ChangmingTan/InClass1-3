@@ -1,10 +1,29 @@
 package edu.greenriver.dev;
 
-public class LinkedStackOfStrings {
+public class Stack<E> {
     // helper class
     private class Node {
-        String item;
+        E item;
         Node next;
+    }
+
+    private class TopToBottomIterator {
+        // fields??
+        private Node current;
+
+        public TopToBottomIterator() {
+            current = first;
+        }
+
+        public boolean hasNext() {
+            return current.next != null;
+        }
+
+        public E next() {
+            E item = current.item;
+            current = current.next;
+            return item;
+        }
     }
 
     // fields???
@@ -12,12 +31,12 @@ public class LinkedStackOfStrings {
     private int n;          // counter
 
     // methods
-    public LinkedStackOfStrings() {
+    public Stack() {
         first = null;
         n = 0;
     }
 
-    public void push(String item) {
+    public void push(E item) {
         // the diagram was from the slide
         // code is also in the book - make sure you understand
         // every line of this method and why we do all 4 lines
@@ -28,9 +47,9 @@ public class LinkedStackOfStrings {
         n++;
     }
 
-    public String pop() {
+    public E pop() {
         if (!isEmpty()) {
-            String item = first.item;
+            E item = first.item;
             first = first.next;
             n--;
             return item;
@@ -45,6 +64,4 @@ public class LinkedStackOfStrings {
     public int size() {
         return n;   // change this later
     }
-
-
 }
